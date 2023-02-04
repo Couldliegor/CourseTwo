@@ -16,8 +16,7 @@ public class TaskService {
 
     public void removeTask(Integer taskId) throws TaskNotFoundException {
         if (this.taskMap.containsKey(taskId)) {
-            System.out.println("Задача удалена " + getTaskMap().get(taskId).getHeading());
-            taskArchive.add(getTaskMap().get(taskId));
+            System.out.println("Задача удалена " + taskArchive.add(getTaskMap().remove(taskId)));
             this.taskMap.remove(taskId);
         } else {
             throw new TaskNotFoundException(taskId);
@@ -61,7 +60,7 @@ public class TaskService {
         return tasksByDay;
     }
 
-    public Map<Integer, Task> getTaskMap() {
+    private Map<Integer, Task> getTaskMap() {
         return taskMap;
     }
 }
